@@ -83,6 +83,26 @@ char * strncat(char * line, const char * lineToCopy, unsigned int maxSymbols)
     return line;
 }
 
+char * customFgets(char * str, unsigned int count, FILE * inputFile)
+{
+    if (str == NULL || inputFile == NULL) {
+        return NULL;
+    }
+
+    count--;
+
+    size_t currentNumOfSymbols = 0;
+
+    while ( ( *(str + currentNumOfSymbols) = fgetc(inputFile) ) != '\n' && currentNumOfSymbols < count ) {
+        currentNumOfSymbols++;
+    }
+
+    *(str + currentNumOfSymbols) = '\0';
+
+    return str;
+
+}
+
 char * strdup(const char * str)
 {
     int lenght = strlen(str);
